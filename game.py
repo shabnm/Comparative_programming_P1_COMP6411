@@ -1,10 +1,7 @@
-from stringDatabase import dataLoader
 import sys
-import tabulate
+from tabulate import tabulate
 
-
-class Game():
-    quit_flag = False
+class Game:
     ret = []
     score = 0.0
     used_letter = []
@@ -43,7 +40,7 @@ class Game():
             self.ret.append(self.bad_guess), self.ret.append(self.missing_letters), self.ret.append(self.score)
             # +" "+expected_word+" "+res+" "+str(self.bad_guess)\
             #       +" "+str(self.missing_letters)+" "+str(self.score)
-            return self.ret
+            return 4
         print(actual_word)
         user_response = input("g = guess, t = tell me, l for a letter, and q to quit\n")
         if user_response == 't':
@@ -90,7 +87,13 @@ class Game():
             self.used_letter.append(user_letter)
             self.start(expected_word, actual_word, '', count)
         elif user_response == 'q':
-            self.quit_flag.
+            self.show_data()
+            sys.exit("GAME OVER")
         else:
-            print("Please enter valid responses, g,t,l,q\n")
+            print("Please enter valid responses, g,t,l or q\n")
             self.start(expected_word,actual_word,'', count)
+
+    def show_data(self):
+        table_headers = ['Game', 'Word', 'Status', 'Bad Guess', 'Missing Letters', 'Score']
+        chunks = [self.ret[x:x + 6] for x in range(0, len(self.ret), 6)]
+        print(tabulate(chunks, headers=table_headers))
