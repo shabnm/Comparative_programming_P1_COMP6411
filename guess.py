@@ -1,17 +1,20 @@
 from game import Game
 from stringDatabase import dataLoader
-import os
-from tabulate import tabulate
+
+'''
+Guess.py class is used to run the project
+@param count keeps track of number of runs
+@param expected_word get random 4 digit word from the four_text.txt
+'''
 
 
-class Guess:
-    count = 1
+class Guess :
+    count: int=1
+    '''
+    Can execute for 100 runs, select q to stop the run
+    '''
     while count < 100:
-        print("** The Great Guess Game **")
-        expected_word  = dataLoader.gettingData("..\\COMP_6411\\four_letters.txt")
-        Game().start(expected_word, "----", '', count)
-        count+=1
-
-
-# guess.py will be used to run the project
-# it will define the outlook and the layout of the project
+        print ( "** The Great Guess Game **" )
+        expected_word: object=dataLoader.gettingData ( "..\\COMP_6411\\four_letters.txt" )
+        Game ( ).start ( expected_word, "----", '', count )
+        count += 1
